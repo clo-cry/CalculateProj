@@ -19,7 +19,7 @@ public class PrimaryCalculator {
     private static final int MARGIN_X = 20;
     private static final int MARGIN_Y = 60;
 
-    private JFrame window; // Main window
+    private JFrame frame; // Main window
     private final JComboBox<String> comboCalcType;
     private final JComboBox<String> comboTheme;
     private final JTextField inText; // Input
@@ -69,9 +69,9 @@ public class PrimaryCalculator {
     */
 
     public PrimaryCalculator() {
-        window = new JFrame("Calculator");
-        window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        window.setLocationRelativeTo(null); // Move window to center
+        frame = new JFrame("Calculator");
+        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        frame.setLocationRelativeTo(null); // Move window to center
 
         comboTheme = initCombo(new String[]{"Simple", "Colored", "DarkTheme"}, 230, 30, "Theme", themeSwitchEventConsumer);
 
@@ -85,7 +85,7 @@ public class PrimaryCalculator {
         inText.setEditable(false);
         inText.setBackground(Color.WHITE);
         inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
-        window.add(inText);
+        frame.add(inText);
 
         btnC = initBtn("C", x[0], y[1], event -> {
             repaintFont();
@@ -425,10 +425,10 @@ public class PrimaryCalculator {
         });
         btnLog.setVisible(false);
 
-        window.setLayout(null);
-        window.setResizable(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close button clicked? = End The process
-        window.setVisible(true);
+        frame.setLayout(null);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close button clicked? = End The process
+        frame.setVisible(true);
     }
 
     private JComboBox<String> initCombo(String[] items, int x, int y, String toolTip, Consumer consumerEvent) {
@@ -437,7 +437,7 @@ public class PrimaryCalculator {
         combo.setToolTipText(toolTip);
         combo.setCursor(new Cursor(Cursor.HAND_CURSOR));
         combo.addItemListener(consumerEvent::accept);
-        window.add(combo);
+        frame.add(combo);
 
         return combo;
     }
@@ -449,7 +449,7 @@ public class PrimaryCalculator {
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.addActionListener(event);
         btn.setFocusable(false);
-        window.add(btn);
+        frame.add(btn);
 
         return btn;
     }
@@ -493,13 +493,13 @@ public class PrimaryCalculator {
         String selectedItem = (String) event.getItem();
         switch (selectedItem) {
             case "Standard" -> {
-                window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+                frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
                 btnRoot.setVisible(false);
                 btnPower.setVisible(false);
                 btnLog.setVisible(false);
             }
             case "Scientific" -> {
-                window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
+                frame.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
                 btnRoot.setVisible(true);
                 btnPower.setVisible(true);
                 btnLog.setVisible(true);
@@ -513,7 +513,7 @@ public class PrimaryCalculator {
         String selectedTheme = (String) event.getItem();
         switch (selectedTheme) {
             case "Simple" -> {
-                window.getContentPane().setBackground(null);
+                frame.getContentPane().setBackground(null);
                 btnC.setBackground(null);
                 btnBack.setBackground(null);
                 btnMod.setBackground(null);
@@ -549,7 +549,7 @@ public class PrimaryCalculator {
                 btnRoot.setForeground(Color.BLACK);
             }
             case "Colored" -> {
-                window.getContentPane().setBackground(null);
+                frame.getContentPane().setBackground(null);
                 btnC.setBackground(Color.RED);
                 btnBack.setBackground(Color.ORANGE);
                 btnMod.setBackground(Color.GREEN);
@@ -587,7 +587,7 @@ public class PrimaryCalculator {
             case "DarkTheme" -> {
                 final Color primaryDarkColor = new Color(5, 215, 238);
                 final Color secondaryDarkColor = new Color(255, 255, 255);
-                window.getContentPane().setBackground(new Color(58, 51, 51));
+                frame.getContentPane().setBackground(new Color(58, 51, 51));
                 btn0.setBackground(secondaryDarkColor);
                 btn1.setBackground(secondaryDarkColor);
                 btn2.setBackground(secondaryDarkColor);
