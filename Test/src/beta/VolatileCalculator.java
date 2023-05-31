@@ -1,8 +1,9 @@
 package beta;
 
+import beta.test.L.RoundButton;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.function.Consumer;
@@ -53,8 +54,28 @@ public class VolatileCalculator {
 
         inText = new JTextField("0");
         inText.setBounds(x[0], y[0], 350, 70);
+        inText.setForeground(new Color(11, 61, 2));
+        Insets insets = inText.getInsets();
+        inText.setBorder(new Border() {
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                g.setColor(Color.GRAY);
+                g.drawRect(x,y,x+width,y+height);
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c) {
+                return insets;
+            }
+
+            @Override
+            public boolean isBorderOpaque() {
+                return false;
+            }
+        });
+
         inText.setEditable(false);
-        inText.setBackground(new Color(54, 163, 80));
+        inText.setBackground(new Color(168, 203, 74));
         inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
         frame.add(inText);
 
@@ -348,13 +369,6 @@ public class VolatileCalculator {
         });
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
-        JButton[] buttons = {btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
-                btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
-                btnPoint, btnEqual};
-        for (JButton button : buttons) {
-            changeForm(button);
-        }
-
         frame.setLayout(null);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close button clicked? = End The process
@@ -373,7 +387,8 @@ public class VolatileCalculator {
     }
 
     private JButton initBtn(String label, int x, int y, ActionListener event) {
-        JButton btn = new JButton(label);
+        JButton btn = new RoundButton(label,80);
+        btn.setForeground(new Color(77, 1, 16));
         btn.setBounds(x, y, BUTTON_WIDTH, BUTTON_HEIGHT);
         btn.setFont(new Font("Comic Sans MS", Font.PLAIN, 28));
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -416,31 +431,9 @@ public class VolatileCalculator {
     private void repaintFont() {
         try {
             inText.setFont(loadFont());
-        } catch (FontFormatException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void changeForm(JButton btn) {
-        btn.setBorder(new Border() {
-            @Override
-            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.drawRoundRect(x, y, width, height, 30, 30);
-            }
-
-            @Override
-            public Insets getBorderInsets(Component c) {
-                return new Insets();
-            }
-
-            @Override
-            public boolean isBorderOpaque() {
-                return false;
-            }
-        });
     }
 
     public Font loadFont() throws FontFormatException, IOException {

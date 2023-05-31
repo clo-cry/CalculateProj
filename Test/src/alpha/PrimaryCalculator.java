@@ -507,6 +507,7 @@ public class PrimaryCalculator {
         }
     };
 
+
     private Consumer<ItemEvent> themeSwitchEventConsumer = event -> {
         if (event.getStateChange() != ItemEvent.SELECTED) return;
 
@@ -626,7 +627,12 @@ public class PrimaryCalculator {
     };
 
     public static void main(String[] args) {
-
+//        String num = new String("3*4");
+//        char[] chars = new char[num.length()];
+//        for (int i = 0; i < num.length(); i++) {
+//            chars[i] = num.charAt(i);
+//        }
+//        System.out.println(chars);
         new PrimaryCalculator();
     }
 }
