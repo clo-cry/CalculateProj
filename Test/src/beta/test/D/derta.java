@@ -21,7 +21,7 @@ class Moon{
         String[] str= {"C","<-","%","/","7","8","9","*","4","5","6","-",
         "1","2","3","+",".","0","="};
         for(int i=0;i<19;i++){
-            p.add(new JButton(""+str[i]));
+            p.add(new JButton(str[i]));
         }
 
 
