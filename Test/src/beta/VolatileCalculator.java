@@ -1,13 +1,14 @@
 package beta;
 
-import java.awt.Cursor;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
-import java.awt.Color;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.lang.Math;
 
 public class VolatileCalculator {
@@ -16,8 +17,8 @@ public class VolatileCalculator {
     private static final int WINDOW_HEIGHT = 600;
     private static final int BUTTON_WIDTH = 80;
     private static final int BUTTON_HEIGHT = 70;
-    private static final int MARGIN_X = 20;
-    private static final int MARGIN_Y = 60;
+    private static final int MARGIN_X = 22;
+    private static final int MARGIN_Y = 58;
 
     private JFrame frame; // Main window
 
@@ -37,13 +38,23 @@ public class VolatileCalculator {
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         frame.setLocationRelativeTo(null); // Move window to center
 
-        int[] x = {MARGIN_X, MARGIN_X + 90, 200, 290, 380};
+        frame.setContentPane(new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setPaint(Color.DARK_GRAY);
+                g2d.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+            }
+        });
+
+        int[] x = {MARGIN_X, MARGIN_X + 90, MARGIN_X + 180, MARGIN_X + 270, MARGIN_X + 360};
         int[] y = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 180, MARGIN_Y + 260, MARGIN_Y + 340, MARGIN_Y + 420};
 
         inText = new JTextField("0");
         inText.setBounds(x[0], y[0], 350, 70);
         inText.setEditable(false);
-        inText.setBackground(Color.WHITE);
+        inText.setBackground(new Color(54, 163, 80));
         inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
         frame.add(inText);
 
@@ -53,6 +64,8 @@ public class VolatileCalculator {
             opt = ' ';
             val = 0;
         });
+
+        btnC.doClick();
 
         btnBack = initBtn("<-", x[1], y[1], event -> {
             repaintFont();
@@ -335,7 +348,12 @@ public class VolatileCalculator {
         });
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
-
+        JButton[] buttons = {btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
+                btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
+                btnPoint, btnEqual};
+        for (JButton button : buttons) {
+            changeForm(button);
+        }
 
         frame.setLayout(null);
         frame.setResizable(false);
@@ -396,9 +414,42 @@ public class VolatileCalculator {
     }
 
     private void repaintFont() {
-        inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
+        try {
+            inText.setFont(loadFont());
+        } catch (FontFormatException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    public void changeForm(JButton btn) {
+        btn.setBorder(new Border() {
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.drawRoundRect(x, y, width, height, 30, 30);
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c) {
+                return new Insets();
+            }
+
+            @Override
+            public boolean isBorderOpaque() {
+                return false;
+            }
+        });
+    }
+
+    public Font loadFont() throws FontFormatException, IOException {
+        String fontFileName = "font.TTF";
+        InputStream is = this.getClass().getResourceAsStream(fontFileName);
+        Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+        Font fontBase = font.deriveFont(Font.PLAIN, 50);
+        return fontBase;
+    }
 
     public static void main(String[] args) {
 
