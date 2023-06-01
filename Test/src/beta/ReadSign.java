@@ -7,6 +7,7 @@ import java.io.File;
 public class ReadSign {
     public static void read(String str) {
         char[] si = str.toCharArray();
+        System.out.println(si);
         char s = 0;
         char[] signs = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '万', '十', '千', '点', '百'};
 //        long count = System.currentTimeMillis();
@@ -25,7 +26,7 @@ public class ReadSign {
                 case '万' -> s = signs[10];
                 case '十' -> s = signs[11];
                 case '千' -> s = signs[12];
-                case '点' -> s = signs[13];
+                case '.' -> s = signs[13];
                 case '百' -> s = signs[14];
             }
 

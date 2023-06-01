@@ -557,7 +557,7 @@ public class VolatileCalculator {
                 while (true) {
                     if (turn) {
                         ReadSign.read(inText.getText());
-                        break;
+                        turn = false;
                     }
                 }
             }
