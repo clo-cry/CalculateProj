@@ -1,9 +1,13 @@
 package beta;
 
 import beta.test.L.RoundButton;
+import beta.test.L.simpleSoundPlayer;
+import com.sun.awt.AWTUtilities;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.function.Consumer;
@@ -18,8 +22,8 @@ public class VolatileCalculator {
     private static final int WINDOW_HEIGHT = 600;
     private static final int BUTTON_WIDTH = 80;
     private static final int BUTTON_HEIGHT = 70;
-    private static final int MARGIN_X = 22;
-    private static final int MARGIN_Y = 58;
+    private static final int MARGIN_X = 28;
+    private static final int MARGIN_Y = 90;
 
     private JFrame frame; // Main window
 
@@ -35,9 +39,30 @@ public class VolatileCalculator {
 
 
     public VolatileCalculator() {
+        JFrame.setDefaultLookAndFeelDecorated(false);
         frame = new JFrame("Calculator");
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String fileName = "test.wav";
+                String thePath = new File("").getAbsolutePath() + "/Test/src/beta/test/L/" + fileName;
+                simpleSoundPlayer player = new simpleSoundPlayer();
+                player.play(thePath);
+            }
+        });t1.start();
+
+//        AWTUtilities.setWindowShape(frame, new RoundRectangle2D.Double(
+//
+//                0.0D, 0.0D, frame.getWidth(), frame.getHeight(), 26.0D,
+//
+//                26.0D));
         frame.setLocationRelativeTo(null); // Move window to center
+
+        frame.setUndecorated(true);
+        RoundRectangle2D shape = new RoundRectangle2D.Double(0, 0, frame.getWidth(), frame.getHeight(), 40, 40);
+        frame.setShape(shape);
 
         frame.setContentPane(new JPanel() {
             @Override
