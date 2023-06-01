@@ -9,15 +9,13 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.lang.Math;
 
 public class VolatileCalculator {
-    private static boolean turn = false;
+    private volatile boolean turn = false;
     private byte count = 0;
     private static final int WINDOW_WIDTH = 410;
     private static final int WINDOW_HEIGHT = 600;
@@ -28,7 +26,7 @@ public class VolatileCalculator {
 
     private JFrame frame; // Main window
 
-    private  final JTextField inText; // Input
+    private final JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
             btnPoint, btnEqual;
@@ -37,10 +35,6 @@ public class VolatileCalculator {
     private boolean go = true; // For calculate with Opt != (=)
     private boolean addWrite = true; // Connect numbers in display
     private double val = 0; // Save the value typed for calculation
-
-    public JTextField getInText() {
-        return inText;
-    }
 
     public VolatileCalculator() {
         JFrame.setDefaultLookAndFeelDecorated(false);
@@ -74,7 +68,7 @@ public class VolatileCalculator {
             @Override
             public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
                 g.setColor(Color.GRAY);
-                g.drawRect(x,y,x+width,y+height);
+                g.drawRect(x, y, x + width, y + height);
             }
 
             @Override
@@ -544,7 +538,6 @@ public class VolatileCalculator {
                     opt = '=';
                     addWrite = false;
                 }
-
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -558,6 +551,18 @@ public class VolatileCalculator {
         });
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (turn) {
+                        ReadSign.read(inText.getText());
+                        break;
+                    }
+                }
+            }
+        }).start();
+
 
         frame.setLayout(null);
         frame.setResizable(false);
@@ -565,19 +570,9 @@ public class VolatileCalculator {
         frame.setVisible(true);
     }
 
-    private JComboBox<String> initCombo(String[] items, int x, int y, String toolTip, Consumer consumerEvent) {
-        JComboBox<String> combo = new JComboBox<>(items);
-        combo.setBounds(x, y, 140, 25);
-        combo.setToolTipText(toolTip);
-        combo.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        combo.addItemListener(consumerEvent::accept);
-        frame.add(combo);
-
-        return combo;
-    }
 
     private JButton initBtn(String label, int x, int y, ActionListener event) {
-        JButton btn = new RoundButton(label,80);
+        JButton btn = new RoundButton(label, 80);
         btn.setForeground(new Color(77, 1, 16));
         btn.setBounds(x, y, BUTTON_WIDTH, BUTTON_HEIGHT);
         btn.setFont(new Font("Comic Sans MS", Font.PLAIN, 28));
@@ -585,7 +580,6 @@ public class VolatileCalculator {
         btn.addActionListener(event);
         btn.setFocusable(false);
         frame.add(btn);
-
         return btn;
     }
 
@@ -635,9 +629,6 @@ public class VolatileCalculator {
     }
 
     public static void main(String[] args) {
-        VolatileCalculator volatileCalculator = new VolatileCalculator();
-        if (turn){
-            ReadSign.read(volatileCalculator.getInText().getText());
-        }
+        new VolatileCalculator();
     }
 }
