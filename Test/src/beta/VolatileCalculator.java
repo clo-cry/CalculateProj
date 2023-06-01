@@ -94,7 +94,7 @@ public class VolatileCalculator {
                     @Override
                     public void run() {
                         String fileName = "归零.wav";
-                        String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                        String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                         simpleSoundPlayer player = new simpleSoundPlayer();
                         player.play(thePath);
                     }
@@ -114,7 +114,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "清除.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -148,7 +148,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "取余.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -175,7 +175,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "除.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -199,7 +199,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "7.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -223,7 +223,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "8.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -247,7 +247,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "9.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -274,7 +274,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "乘.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -298,7 +298,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "4.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -322,7 +322,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "5.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -346,7 +346,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "6.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -374,7 +374,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "减.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -398,7 +398,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "1.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -422,7 +422,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "2.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -446,7 +446,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "3.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -473,7 +473,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "加.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -495,7 +495,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "点.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -519,7 +519,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "0.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }
@@ -542,7 +542,7 @@ public class VolatileCalculator {
                 @Override
                 public void run() {
                     String fileName = "等于.wav";
-                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                     simpleSoundPlayer player = new simpleSoundPlayer();
                     player.play(thePath);
                 }

@@ -7,7 +7,6 @@ import java.io.File;
 public class ReadSign {
     public static void read(String str) {
         char[] si = str.toCharArray();
-        System.out.println(si);
         char s = 0;
         char[] signs = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '万', '十', '千', '点', '百'};
 //        long count = System.currentTimeMillis();
@@ -49,7 +48,7 @@ public class ReadSign {
 
             Runnable runnable = () -> {
                 String fileName = finalS + ".wav";
-                String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                String thePath = new File("").getAbsolutePath() + "/Test/sound/" + fileName;
                 simpleSoundPlayer player = new simpleSoundPlayer();
                 player.play(thePath);
             };
