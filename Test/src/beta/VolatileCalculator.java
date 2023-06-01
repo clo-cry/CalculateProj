@@ -2,7 +2,6 @@ package beta;
 
 import beta.test.L.RoundButton;
 import beta.test.L.simpleSoundPlayer;
-import com.sun.awt.AWTUtilities;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
