@@ -1,8 +1,7 @@
-package beta.test;
+package beta.test.L;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.font.FontRenderContext;

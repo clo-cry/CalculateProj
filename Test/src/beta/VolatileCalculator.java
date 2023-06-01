@@ -10,6 +10,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import javax.swing.*;
@@ -17,7 +18,8 @@ import javax.swing.border.Border;
 import java.lang.Math;
 
 public class VolatileCalculator {
-
+    private static boolean turn = false;
+    private byte count = 0;
     private static final int WINDOW_WIDTH = 410;
     private static final int WINDOW_HEIGHT = 600;
     private static final int BUTTON_WIDTH = 80;
@@ -27,7 +29,7 @@ public class VolatileCalculator {
 
     private JFrame frame; // Main window
 
-    private final JTextField inText; // Input
+    private  final JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
             btnPoint, btnEqual;
@@ -37,27 +39,15 @@ public class VolatileCalculator {
     private boolean addWrite = true; // Connect numbers in display
     private double val = 0; // Save the value typed for calculation
 
+    public JTextField getInText() {
+        return inText;
+    }
 
     public VolatileCalculator() {
         JFrame.setDefaultLookAndFeelDecorated(false);
         frame = new JFrame("Calculator");
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String fileName = "test.wav";
-                String thePath = new File("").getAbsolutePath() + "/Test/src/beta/test/L/" + fileName;
-                simpleSoundPlayer player = new simpleSoundPlayer();
-                player.play(thePath);
-            }
-        });t1.start();
-
-//        AWTUtilities.setWindowShape(frame, new RoundRectangle2D.Double(
-//
-//                0.0D, 0.0D, frame.getWidth(), frame.getHeight(), 26.0D,
-//
-//                26.0D));
         frame.setLocationRelativeTo(null); // Move window to center
 
         frame.setUndecorated(true);
@@ -106,6 +96,17 @@ public class VolatileCalculator {
 
         btnC = initBtn("C", x[0], y[1], event -> {
             repaintFont();
+            if (count != 0)
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String fileName = "归零.wav";
+                        String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                        simpleSoundPlayer player = new simpleSoundPlayer();
+                        player.play(thePath);
+                    }
+                }).start();
+            count = 1;
             inText.setText("0");
             opt = ' ';
             val = 0;
@@ -116,6 +117,15 @@ public class VolatileCalculator {
         btnBack = initBtn("<-", x[1], y[1], event -> {
             repaintFont();
             String str = inText.getText();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "清除.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
             StringBuilder str2 = new StringBuilder();
             for (int i = 0; i < (str.length() - 1); i++) {
                 str2.append(str.charAt(i));
@@ -141,6 +151,15 @@ public class VolatileCalculator {
                     go = false;
                     addWrite = false;
                 }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "取余.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btnDiv = initBtn("/", x[3], y[1], event -> {
@@ -159,6 +178,15 @@ public class VolatileCalculator {
                 } else {
                     opt = '/';
                 }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "除.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn7 = initBtn("7", x[0], y[2], event -> {
@@ -174,6 +202,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "7.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn8 = initBtn("8", x[1], y[2], event -> {
@@ -189,6 +226,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "8.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn9 = initBtn("9", x[2], y[2], event -> {
@@ -204,6 +250,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "9.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btnMul = initBtn("*", x[3], y[2], event -> {
@@ -222,6 +277,15 @@ public class VolatileCalculator {
                 } else {
                     opt = '*';
                 }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "乘.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn4 = initBtn("4", x[0], y[3], event -> {
@@ -237,6 +301,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "4.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn5 = initBtn("5", x[1], y[3], event -> {
@@ -252,6 +325,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "5.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn6 = initBtn("6", x[2], y[3], event -> {
@@ -267,6 +349,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "6.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btnSub = initBtn("-", x[3], y[3], event -> {
@@ -286,6 +377,15 @@ public class VolatileCalculator {
                 } else {
                     opt = '-';
                 }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "减.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn1 = initBtn("1", x[0], y[4], event -> {
@@ -301,6 +401,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "1.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn2 = initBtn("2", x[1], y[4], event -> {
@@ -316,6 +425,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "2.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn3 = initBtn("3", x[2], y[4], event -> {
@@ -331,6 +449,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "3.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btnAdd = initBtn("+", x[3], y[4], event -> {
@@ -349,6 +476,15 @@ public class VolatileCalculator {
                 } else {
                     opt = '+';
                 }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "加.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btnPoint = initBtn(".", x[0], y[5], event -> {
@@ -362,6 +498,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "点.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btn0 = initBtn("0", x[1], y[5], event -> {
@@ -377,6 +522,15 @@ public class VolatileCalculator {
                 addWrite = true;
             }
             go = true;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "0.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
         });
 
         btnEqual = initBtn("=", x[2], y[5], event -> {
@@ -391,8 +545,20 @@ public class VolatileCalculator {
                     opt = '=';
                     addWrite = false;
                 }
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "等于.wav";
+                    String thePath = new File("").getAbsolutePath() + "/Test/src/beta/se/" + fileName;
+                    simpleSoundPlayer player = new simpleSoundPlayer();
+                    player.play(thePath);
+                }
+            }).start();
+            turn = true;
         });
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
+
 
         frame.setLayout(null);
         frame.setResizable(false);
@@ -470,7 +636,9 @@ public class VolatileCalculator {
     }
 
     public static void main(String[] args) {
-
-        new VolatileCalculator();
+        VolatileCalculator volatileCalculator = new VolatileCalculator();
+        if (turn){
+            ReadSign.read(volatileCalculator.getInText().getText());
+        }
     }
 }

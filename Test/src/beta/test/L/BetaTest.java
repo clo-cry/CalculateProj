@@ -1,4 +1,4 @@
-package beta.test;
+package beta.test.L;
 
 import javax.swing.*;
 import java.awt.*;

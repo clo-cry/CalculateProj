@@ -33,8 +33,6 @@ public class simpleSoundPlayer {
 
             theAudioLine.start();
 
-            System.out.println("Audio Player Started.");
-
             byte[] bufferBytes = new byte[BUFFER_SIZE];
             int readBytes = -1;
 
@@ -45,8 +43,6 @@ public class simpleSoundPlayer {
             theAudioLine.drain();
             theAudioLine.close();
             sampleStream.close();
-
-            System.out.println("Playback has been finished.");
 
         } catch (UnsupportedAudioFileException e) {
             System.out.println("Unsupported file.");
