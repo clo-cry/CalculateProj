@@ -6,9 +6,11 @@ import java.io.File;
 
 public class ReadSign {
     public static void read(String str) {
+        if (str.equals("Infinity"))
+            return;
         char[] si = str.toCharArray();
         char s = 0;
-        char[] signs = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '万', '十', '千', '点', '百'};
+        char[] signs = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '万', '十', '千', '点', '百','幂','负'};
 //        long count = System.currentTimeMillis();
         for (char c : si) {
             switch (c) {
@@ -27,6 +29,8 @@ public class ReadSign {
                 case '千' -> s = signs[12];
                 case '.' -> s = signs[13];
                 case '百' -> s = signs[14];
+                case 'E' -> s = signs[15];
+                case '-' -> s = signs[16];
             }
 
             char finalS = s;

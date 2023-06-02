@@ -12,6 +12,8 @@
     + IntelliJ IDEA Community Edition 2022.3.3
     + phu004/Java_tutorials
     + PrimaryCalculator
+    + [Delft Stack](https://www.delftstack.com/zh/tags/java/)
+    + [Java 实现数学公式的正则校验和结果计算](https://segmentfault.com/a/1190000040348550)
 ```java
 // Java Coding Test
 public class tmp {
