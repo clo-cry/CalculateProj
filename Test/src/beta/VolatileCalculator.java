@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import java.lang.Math;
 
 public class VolatileCalculator {
+    public static boolean needRead = false;
     private volatile boolean turn = false;
     private byte count = 0;
     private static final int WINDOW_WIDTH = 410;
@@ -99,13 +100,22 @@ public class VolatileCalculator {
                         player.play(thePath);
                     }
                 }).start();
+            needRead = false;
             count = 1;
             inText.setText("0");
             opt = ' ';
             val = 0;
         });
-
         btnC.doClick();
+
+        JButton btnEsc = initBtn("x",350,20,e -> {
+            System.exit(0);
+        });
+        btnEsc.setSize(30,30);
+        btnEsc.setFont(new Font("Arial Unicode MS", Font.PLAIN, 20));
+        btnEsc.setText("×");
+        btnEsc.setMargin(new Insets(0,0,0,0));
+
 
         btnBack = initBtn("<-", x[1], y[1], event -> {
             repaintFont();
@@ -119,6 +129,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
             StringBuilder str2 = new StringBuilder();
             for (int i = 0; i < (str.length() - 1); i++) {
                 str2.append(str.charAt(i));
@@ -153,6 +164,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btnDiv = initBtn("/", x[3], y[1], event -> {
@@ -180,6 +192,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn7 = initBtn("7", x[0], y[2], event -> {
@@ -204,6 +217,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn8 = initBtn("8", x[1], y[2], event -> {
@@ -228,6 +242,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn9 = initBtn("9", x[2], y[2], event -> {
@@ -252,6 +267,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btnMul = initBtn("*", x[3], y[2], event -> {
@@ -279,6 +295,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn4 = initBtn("4", x[0], y[3], event -> {
@@ -303,6 +320,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn5 = initBtn("5", x[1], y[3], event -> {
@@ -327,6 +345,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn6 = initBtn("6", x[2], y[3], event -> {
@@ -351,6 +370,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btnSub = initBtn("-", x[3], y[3], event -> {
@@ -379,6 +399,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn1 = initBtn("1", x[0], y[4], event -> {
@@ -403,6 +424,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn2 = initBtn("2", x[1], y[4], event -> {
@@ -427,6 +449,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn3 = initBtn("3", x[2], y[4], event -> {
@@ -451,6 +474,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btnAdd = initBtn("+", x[3], y[4], event -> {
@@ -478,6 +502,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btnPoint = initBtn(".", x[0], y[5], event -> {
@@ -500,6 +525,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btn0 = initBtn("0", x[1], y[5], event -> {
@@ -524,6 +550,7 @@ public class VolatileCalculator {
                     player.play(thePath);
                 }
             }).start();
+            needRead = false;
         });
 
         btnEqual = initBtn("=", x[2], y[5], event -> {
@@ -548,6 +575,7 @@ public class VolatileCalculator {
                 }
             }).start();
             turn = true;
+            needRead = true;
         });
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 

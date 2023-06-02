@@ -10,8 +10,8 @@
 
 + 工具和参考
     + IntelliJ IDEA Community Edition 2022.3.3
+    + phu004/Java_tutorials
     + PrimaryCalculator
-
 ```java
 // Java Coding Test
 public class tmp {
@@ -21,3 +21,5 @@ public class tmp {
 }
 
 ```
++ 当前运行效果图
++ ![avatar](https://raw.githubusercontent.com/clo-cry/MarkdowmPics/main/preview.png?token=GHSAT0AAAAAACCTVZB4VYOMVL2THGRUC4NMZDZ6B4Q)

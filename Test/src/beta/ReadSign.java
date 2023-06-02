@@ -41,9 +41,9 @@ public class ReadSign {
 //                }
 //            }
             try {
-                Thread.sleep(900);
+                Thread.sleep(700);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                return;
             }
 
             Runnable runnable = () -> {
@@ -52,7 +52,12 @@ public class ReadSign {
                 simpleSoundPlayer player = new simpleSoundPlayer();
                 player.play(thePath);
             };
-            new Thread(runnable,"read").start();
+            if (VolatileCalculator.needRead) {
+                Thread thread = new Thread(runnable, "read");
+                thread.start();
+
+            } else
+                Thread.currentThread().interrupt();
 
         }
     }
