@@ -24,4 +24,4 @@ public class tmp {
 
 ```
 + 当前运行效果图
-+ ![avatar](https://raw.githubusercontent.com/clo-cry/MarkdowmPics/main/preview.png?token=GHSAT0AAAAAACCTVZB4VYOMVL2THGRUC4NMZDZ6B4Q)
++ ![avatar](https://github.com/clo-cry/MarkdowmPics/blob/main/preview.png)
